@@ -1415,7 +1415,7 @@ tag.block.shuffle <- function(tags,window.size=100) {
 
 
 # calculate window cross-correlation
-lwcc <- function(x,y,s,e,whs=100,isize=20,return.peaks=T,min.thr=1,min.dist=100,step=1,tag.weight=1,bg.x=NULL,bg.y=NULL,bg.weight=NULL,mask.x=NULL,mask.y=NULL,bg.whs=whs,round.up=F) {
+lwcc <- function(x,y,s,e,whs=100,isize=20,return.peaks=T,min.thr=1,min.dist=100,step=1,tag.weight=1,bg.x=NULL,bg.y=NULL,bg.weight=1,mask.x=NULL,mask.y=NULL,bg.whs=whs,round.up=F) {
   if(step>1) {
     x <- floor(x/step+0.5); y <- floor(y/step+0.5)
     
@@ -1547,7 +1547,7 @@ window.call.mirror.binding <- function(tvl,window.size=4e7, debug=T, cluster=NUL
   if(!is.null(bg.tl)) {
     bg.weight <- dataset.density.ratio(tvl,bg.tl,background.density.scaling=background.density.scaling);
   } else {
-    bg.weight <- NULL;
+    bg.weight <- 1;
   }
   if(debug) {
     cat("bg.weight=",bg.weight," ");
